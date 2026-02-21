@@ -1,0 +1,9 @@
+.user-container {
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.user-container h1,
+.user-container h2 {
+  margin-bottom: 20px;
+}

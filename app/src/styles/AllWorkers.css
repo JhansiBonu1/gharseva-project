@@ -1,0 +1,235 @@
+/* ===== PAGE BACKGROUND ===== */
+.all-workers {
+  min-height: 100vh;
+  padding: 40px;
+  background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== HEADER ===== */
+.workers-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.workers-header h2 {
+  font-size: 30px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #6366f1, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== SEARCH + ACTIONS ===== */
+.workers-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  padding: 10px 16px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  outline: none;
+  min-width: 250px;
+  transition: 0.3s ease;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* ===== BUTTON BASE ===== */
+button {
+  padding: 9px 18px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+/* PRIMARY */
+.btn-primary {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* SECONDARY */
+.btn-secondary {
+  background: #e5e7eb;
+  color: #111;
+}
+
+.btn-secondary:hover {
+  background: #d1d5db;
+}
+
+/* SUCCESS */
+.btn-success {
+  background: linear-gradient(90deg, #10b981, #34d399);
+  color: white;
+}
+
+.btn-success:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+/* DANGER */
+.btn-danger {
+  background: linear-gradient(90deg, #f43f5e, #fb7185);
+  color: white;
+}
+
+.btn-danger:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(244, 63, 94, 0.3);
+}
+
+/* ===== GRID ===== */
+.worker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* ===== CARD ===== */
+.worker-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.worker-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(99, 102, 241, 0.2);
+}
+
+/* ===== CARD HEADER ===== */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ===== BADGES ===== */
+.badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge.available {
+  background: rgba(16, 185, 129, 0.15);
+  color: #059669;
+}
+
+.badge.busy {
+  background: rgba(244, 63, 94, 0.15);
+  color: #e11d48;
+}
+
+/* ===== CARD BODY ===== */
+.card-body p {
+  font-size: 13px;
+  margin: 6px 0;
+  color: #374151;
+}
+
+.description {
+  font-size: 13px;
+  margin-top: 10px;
+  color: #6b7280;
+}
+
+/* ===== CARD BUTTONS ===== */
+.card-buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+/* ===== EDIT FORM ===== */
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  font-size: 13px;
+  transition: 0.3s ease;
+}
+
+.edit-form input:focus,
+.edit-form textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  outline: none;
+}
+
+.edit-form textarea {
+  resize: none;
+  min-height: 70px;
+}
+
+/* ===== CHECKBOX ===== */
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/* ===== NO DATA ===== */
+.no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #6b7280;
+  margin-top: 40px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .workers-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .workers-actions {
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+}
