@@ -1,262 +1,201 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Home() {
+    const fadeIn = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    };
+
+    const staggerContainer = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.2 }
+        }
+    };
+
     return (
-        <>
+        <div className="bg-mesh min-h-screen">
             <style>{`
-                body {
-                    margin: 0;
-                    font-family: 'Segoe UI', sans-serif;
-                    background: #f0f2f5;
-                    color: #2c2c2c;
-                }
-
-                .container {
+                .home-container {
                     max-width: 1200px;
-                    margin: auto;
-                    padding: 40px 20px;
+                    margin: 0 auto;
+                    padding: 4rem 2rem;
                 }
-
-                .hero {
-                    background: linear-gradient(135deg, #2e3b55, #1c1f2f);
-                    padding: 80px 40px;
+                
+                .hero-section {
                     text-align: center;
-                    border-radius: 20px;
-                    margin-bottom: 60px;
-                    color: #ffffff;
-                    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-                    backdrop-filter: blur(6px);
+                    padding: 6rem 2rem;
+                    margin-bottom: 5rem;
                 }
-
-                .hero h1 {
-                    font-size: 46px;
-                    font-weight: 700;
-                    margin-bottom: 20px;
-                    color: #ffffff;
-                    letter-spacing: 1px;
+                
+                .hero-title {
+                    font-size: 4rem;
+                    margin-bottom: 1.5rem;
                 }
-
-                .hero p {
-                    font-size: 20px;
-                    max-width: 700px;
-                    margin: auto;
-                    margin-bottom: 35px;
-                    line-height: 1.7;
-                    color: #cccccc;
+                
+                .hero-subtitle {
+                    font-size: 1.25rem;
+                    color: var(--text-secondary-dark);
+                    max-width: 600px;
+                    margin: 0 auto 3rem;
                 }
-
-                .btn-group {
-                    display: flex;
-                    justify-content: center;
-                    gap: 20px;
-                    flex-wrap: wrap;
-                }
-
-                .btn {
-                    padding: 14px 28px;
-                    font-size: 17px;
-                    border: none;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    text-decoration: none;
-                    font-weight: 600;
-                    transition: all 0.3s ease;
-                }
-
-                .btn-register {
-                    background-color: #0fb78d;
-                    color: #fff;
-                }
-
-                .btn-login {
-                    background-color: #e23d3d;
-                    color: #fff;
-                }
-
-                .btn:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 8px 22px rgba(0,0,0,0.3);
-                    opacity: 0.95;
-                }
-
-                .section {
-                    margin-bottom: 70px;
-                }
-
-                .section h2 {
-                    font-size: 32px;
+                
+                .section-title {
                     text-align: center;
-                    margin-bottom: 40px;
-                    color: #1e1e1e;
+                    font-size: 2.5rem;
+                    margin-bottom: 3rem;
+                    color: var(--text-primary-dark);
                 }
-
+                
                 .card-grid {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    gap: 30px;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 2rem;
+                    margin-bottom: 5rem;
                 }
-
-                .card {
-                    width: 290px;
-                    background: #ffffff;
-                    border-radius: 14px;
-                    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-                    overflow: hidden;
-                    transition: transform 0.3s ease;
+                
+                .info-card {
+                    padding: 2rem;
+                    transition: transform var(--transition-normal);
                 }
-
-                .card:hover {
-                    transform: translateY(-5px);
+                
+                .info-card:hover {
+                    transform: translateY(-10px);
                 }
-
-                .card-header {
-                    background-color: #303c54;
-                    color: #ffffff;
-                    padding: 18px;
-                    font-size: 18px;
-                    font-weight: bold;
-                    text-align: center;
-                    width: 100%;
+                
+                .card-icon {
+                    font-size: 2.5rem;
+                    margin-bottom: 1.5rem;
+                    display: inline-block;
                 }
-
-                .card-body {
-                    padding: 20px;
-                    font-size: 15px;
-                    color: #333;
-                    background: #fafafa;
-                    text-align: center;
+                
+                .card-title {
+                    font-size: 1.5rem;
+                    margin-bottom: 1rem;
+                    color: var(--text-primary-dark);
                 }
-
-                .footer-cta {
-                    text-align: center;
-                    margin-top: 60px;
+                
+                .card-text {
+                    color: var(--text-secondary-dark);
+                    line-height: 1.6;
                 }
-
-                .footer-cta h2 {
-                    font-size: 28px;
-                    margin-bottom: 25px;
-                    color: #1e1e1e;
-                }
-
-                @media (max-width: 600px) {
-                    .card {
-                        width: 100%;
-                    }
-
-                    .hero h1 {
-                        font-size: 30px;
-                    }
-
-                    .hero p {
-                        font-size: 16px;
-                    }
-
-                    .btn {
-                        width: 100%;
-                    }
+                
+                @media (max-width: 768px) {
+                    .hero-title { font-size: 2.5rem; }
+                    .hero-section { padding: 4rem 1rem; }
                 }
             `}</style>
 
-            <div className="container">
+            <div className="home-container">
                 {/* Hero Section */}
-                <div className="hero">
-                    <h1>WorkerAtHome</h1>
-                    <p>
-                        A secure and reliable platform to connect customers with trusted household workers. 
-                        Empowering every home with efficiency and care.
+                <motion.div 
+                    className="hero-section glass-panel"
+                    initial="hidden"
+                    animate="visible"
+                    variants={fadeIn}
+                >
+                    <h1 className="hero-title text-gradient">GharSeva</h1>
+                    <p className="hero-subtitle">
+                        A secure, premium platform connecting you with trusted household professionals. 
+                        Experience exceptional service right at your doorstep.
                     </p>
-                    <div className="btn-group">
-                        <Link to="/register" className="btn btn-register">Register</Link>
-                        <Link to="/login" className="btn btn-login">Login</Link>
+                    <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
+                        <Link to="/register" className="btn-primary">
+                            Get Started
+                        </Link>
+                        <Link to="/login" className="btn-outline">
+                            Sign In
+                        </Link>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* How It Works */}
-                <div className="section">
-                    <h2>How It Works</h2>
-                    <div className="card-grid">
-                        <div className="card">
-                            <div className="card-header">1. Register</div>
-                            <div className="card-body">
-                                Sign up as Customer, Worker, or Admin quickly with basic details.
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">2. Book a Worker</div>
-                            <div className="card-body">
-                                Customers can send requests to verified workers as per their needs.
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">3. Confirm via OTP</div>
-                            <div className="card-body">
-                                Workers accept the task, and customers confirm service via OTP.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <motion.div 
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={fadeIn}
+                >
+                    <h2 className="section-title">How It Works</h2>
+                    <motion.div className="card-grid" variants={staggerContainer}>
+                        <motion.div className="info-card glass-panel" variants={fadeIn}>
+                            <span className="card-icon">📝</span>
+                            <h3 className="card-title">1. Create Account</h3>
+                            <p className="card-text">
+                                Sign up instantly as a Customer or Worker. Set up your profile in minutes with our streamlined onboarding.
+                            </p>
+                        </motion.div>
+                        <motion.div className="info-card glass-panel" variants={fadeIn}>
+                            <span className="card-icon">🔍</span>
+                            <h3 className="card-title">2. Browse & Book</h3>
+                            <p className="card-text">
+                                Explore a wide range of verified professionals. Compare skills, read reviews, and book with one click.
+                            </p>
+                        </motion.div>
+                        <motion.div className="info-card glass-panel" variants={fadeIn}>
+                            <span className="card-icon">✅</span>
+                            <h3 className="card-title">3. Secure Service</h3>
+                            <p className="card-text">
+                                Enjoy peace of mind with our secure OTP verification system. Confirm job completion instantly and safely.
+                            </p>
+                        </motion.div>
+                    </motion.div>
+                </motion.div>
 
                 {/* Key Features */}
-                <div className="section">
-                    <h2>Key Features</h2>
-                    <div className="card-grid">
-                        <div className="card">
-                            <div className="card-header">Verified Profiles</div>
-                            <div className="card-body">
-                                Admins add only trusted workers after a proper background check.
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">Smart Scheduling</div>
-                            <div className="card-body">
-                                Customers choose convenient time slots and get instant confirmation.
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">Role-Based Dashboard</div>
-                            <div className="card-body">
-                                Clean UI for each role — Worker, Customer, Admin — with OTP-based security.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <motion.div 
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={fadeIn}
+                >
+                    <h2 className="section-title">Premium Features</h2>
+                    <motion.div className="card-grid" variants={staggerContainer}>
+                        <motion.div className="info-card glass-panel" variants={fadeIn}>
+                            <span className="card-icon">🛡️</span>
+                            <h3 className="card-title">Verified Excellence</h3>
+                            <p className="card-text">
+                                Every professional on our platform undergoes a rigorous background check to ensure your safety and quality of service.
+                            </p>
+                        </motion.div>
+                        <motion.div className="info-card glass-panel" variants={fadeIn}>
+                            <span className="card-icon">⚡</span>
+                            <h3 className="card-title">Instant Scheduling</h3>
+                            <p className="card-text">
+                                Book services at your convenience. Our smart system matches you with available professionals immediately.
+                            </p>
+                        </motion.div>
+                        <motion.div className="info-card glass-panel" variants={fadeIn}>
+                            <span className="card-icon">📱</span>
+                            <h3 className="card-title">Smart Dashboards</h3>
+                            <p className="card-text">
+                                Track bookings, manage schedules, and review past services through our intuitive, state-of-the-art interface.
+                            </p>
+                        </motion.div>
+                    </motion.div>
+                </motion.div>
 
-                {/* Who Can Use */}
-                <div className="section">
-                    <h2>Who Can Use This?</h2>
-                    <div className="card-grid">
-                        <div className="card">
-                            <div className="card-header">Customers</div>
-                            <div className="card-body">
-                                Anyone looking for domestic help can register and request verified workers.
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">Workers</div>
-                            <div className="card-body">
-                                Gain visibility and accept job requests with flexibility and control.
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="card-header">Admins</div>
-                            <div className="card-body">
-                                Oversee the platform, add trusted workers, and manage customer requests.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Final Call to Action */}
-                <div className="footer-cta">
-                    <h2>Join the community today</h2>
-                    <div className="btn-group">
-                        <Link to="/register" className="btn btn-register">Get Started</Link>
-                        <Link to="/login" className="btn btn-login">Login</Link>
-                    </div>
-                </div>
+                {/* Footer CTA */}
+                <motion.div 
+                    className="hero-section glass-panel"
+                    style={{ marginBottom: 0, padding: '4rem 2rem' }}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeIn}
+                >
+                    <h2 className="section-title" style={{ marginBottom: '1.5rem' }}>Ready to transform your home care?</h2>
+                    <p className="hero-subtitle" style={{ marginBottom: '2rem' }}>
+                        Join thousands of satisfied users who trust GharSeva for their household needs.
+                    </p>
+                    <Link to="/register" className="btn-primary" style={{ padding: '1rem 3rem', fontSize: '1.25rem' }}>
+                        Join GharSeva Today
+                    </Link>
+                </motion.div>
             </div>
-        </>
+        </div>
     );
 }
 
